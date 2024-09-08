@@ -1,0 +1,50 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+'RELATIONSHIP BETWEEN CLASSES'
+Package "1" -- "0..*"  Shipment
+Location "1" -- "0..*" Shipment : "Source"
+Location "1" -- "0..*" Shipment : "Destination"
+Package ..> DeliveryStatus : uses
+
+enum DeliveryStatus {
+    + PENDING
+    + IN_TRANSIT
+    + DELIVERED
+}
+
+/'enum HibernateConfigState {
++ NORMAL
++ TEST
+}'/
+
+'CLASS DEFINITIONS'
+
+class Package {
+    + id: Long
+    + trackingNumber: String
+    + sender: String
+    + reciever: String
+    + deliveryStatus: DeliveryStatus
+    + createdDateTime: LocalDateTime
+    + updatedDateTime: LocalDateTime
+}
+
+class Location {
+    + id: Long
+    + latitude: Double
+    + longitude: Double
+    + address: String
+}
+
+class Shipment {
+    + id: Long
+    + package: Package
+    + sourceLocation: Location
+    + destinationLocation: Location
+    + shipmentDateTime: Date
+
+}
+
+@enduml

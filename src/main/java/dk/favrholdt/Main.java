@@ -12,7 +12,7 @@ public class Main {
         PackageDAO packageDAO = PackageDAO.getInstance(HibernateConfigState.NORMAL);
 
         Package aPackage = Package.builder()
-                .trackingNumber("123456789")git
+                .trackingNumber("123456789")
                 .sender("Mads Hansen")
                 .receiver("Victor Jensen")
                 .deliveryStatus(DeliveryStatus.PENDING)
