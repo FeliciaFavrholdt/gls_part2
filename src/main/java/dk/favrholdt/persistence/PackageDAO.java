@@ -54,7 +54,6 @@ public class PackageDAO implements iDAO<Package> {
 
     @Override
     public Package findByTrackingNumber(String trackingNumber) {
-       // use a typedquery
         try (EntityManager em = emf.createEntityManager()){
             TypedQuery<Package> query = em.createQuery("SELECT p FROM Package p WHERE p.trackingNumber = :trackingNumber", Package.class);
             query.setParameter("trackingNumber", trackingNumber);

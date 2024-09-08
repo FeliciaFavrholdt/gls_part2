@@ -20,15 +20,15 @@ public class Shipment {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "shipped_package_id", nullable = false, length = 10)
+    @JoinColumn(name = "shipped_package", nullable = false)
     private Package shippedPackage;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "source_location_id", nullable = false, length = 10)
+    @JoinColumn(name = "source_location", nullable = false)
     private Location sourceLocation;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "destination_location_id", nullable = false, length = 10)
+    @JoinColumn(name = "destination_location", nullable = false)
     private Location destinationLocation;
 
     @Column(name = "shipment_date_time", nullable = false)
