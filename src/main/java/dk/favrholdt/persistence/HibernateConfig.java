@@ -31,7 +31,9 @@ public class HibernateConfig {
 
     private static void getAnnotationConfiguration(Configuration configuration) {
         // add annotated classes --- remember to add new entities here
-        configuration.addAnnotatedClass(Package.class);
+        configuration.addAnnotatedClass(dk.favrholdt.entities.Package.class);
+        configuration.addAnnotatedClass(dk.favrholdt.entities.Location.class);
+        configuration.addAnnotatedClass(dk.favrholdt.entities.Shipment.class);
     }
 
     private static EntityManagerFactory buildEntityFactoryConfig() {
@@ -83,8 +85,6 @@ public class HibernateConfig {
     private static EntityManagerFactory getEntityManagerFactory(Configuration configuration, Properties props) {
         configuration.setProperties(props);
         getAnnotationConfiguration(configuration);
-
-
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         System.out.println("Hibernate Java Config serviceRegistry created");

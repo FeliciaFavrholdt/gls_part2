@@ -5,7 +5,6 @@ import dk.favrholdt.entities.Package;
 import dk.favrholdt.entities.Shipment;
 import dk.favrholdt.enums.DeliveryStatus;
 import dk.favrholdt.enums.HibernateConfigState;
-import dk.favrholdt.exceptions.JpaException;
 import dk.favrholdt.persistence.PackageDAO;
 
 public class Main {

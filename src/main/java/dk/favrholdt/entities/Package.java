@@ -10,6 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Builder
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -68,14 +69,14 @@ public class Package {
     public void addShipment(Shipment shipment) {
         if (shipment != null) {
             this.shipments.add(shipment);
-            shipment.setRelatedPackage(this);
+            shipment.setShippedPackage(this);
         }
     }
 
     public void removeShipment(Shipment shipment) {
         if (shipment != null) {
             this.shipments.remove(shipment);
-            shipment.setRelatedPackage(null);
+            shipment.setShippedPackage(null);
         }
     }
 }

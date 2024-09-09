@@ -50,25 +50,7 @@ public class LocationDAO implements iDAO<Location> {
 
     @Override
     public Location findByTrackingNumber(String trackingNumber) {
-        try (EntityManager em = emf.createEntityManager()){
-            TypedQuery<Package> query = em.createQuery("SELECT l FROM Package l WHERE l.trackingNumber = :trackingNumber", Package.class);
-            query.setParameter("trackingNumber", trackingNumber);
-            query.setMaxResults(1);
-            return query.getSingleResult();
-        } catch (Exception e) {
-            throw new JpaException("Error finding package by tracking number: " + e.getMessage());
-        }
-    }
-
-    public Location findByAddress(String address) {
-        try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<Location> query = em.createQuery("SELECT l FROM Location l WHERE l.address = :address", Location.class);
-            query.setParameter("address", address);
-            query.setMaxResults(1);
-            return query.getSingleResult();
-        } catch (Exception e) {
-            throw new JpaException("Error finding location by address: " + e.getMessage());
-        }
+    return null;
     }
 
     @Override
@@ -94,5 +76,39 @@ public class LocationDAO implements iDAO<Location> {
             return false;
         }
         return true;
+    }
+
+    public Location findByAddress(String address) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Location> query = em.createQuery("SELECT l FROM Location l WHERE l.address = :address", Location.class);
+            query.setParameter("address", address);
+            query.setMaxResults(1);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            throw new JpaException("Error finding location by address: " + e.getMessage());
+        }
+    }
+
+    //find by latitude and longitude
+    public Location findByLatitudeAndLongitude(double latitude, double longitude) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Location> query = em.createQuery("SELECT l FROM Location l WHERE l.latitude = :latitude AND l.longitude = :longitude", Location.class);
+            query.setParameter("latitude", latitude);
+            query.setParameter("longitude", longitude);
+            query.setMaxResults(1);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            throw new JpaException("Error finding location by latitude and longitude: " + e.getMessage());
+        }
+    }
+
+    //find all locations
+    public Location findAllLocations() {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Location> query = em.createQuery("SELECT l FROM Location l", Location.class);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            throw new JpaException("Error finding all locations: " + e.getMessage());
+        }
     }
 }

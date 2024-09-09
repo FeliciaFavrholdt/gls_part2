@@ -82,18 +82,6 @@ class PackageDAOTest {
     }
 
     @Test
-    void findById() {
-        Package actual = packageDAO.findById(p1.getId());
-        assertEquals(p1, actual);
-    }
-
-    @Test
-    void findByTrackingNumber() {
-        Package actual = packageDAO.findByTrackingNumber(p1.getTrackingNumber());
-        assertEquals(p1, actual);
-    }
-
-    @Test
     void update() {
         Package updated = Package.builder()
                 .id(p1.getId())
@@ -118,5 +106,40 @@ class PackageDAOTest {
         assertFalse(actual);
         Package deleted = packageDAO.findById(p1.getId());
         assertNull(deleted);
+    }
+
+
+    @Test
+    void findById() {
+        Package actual = packageDAO.findById(p1.getId());
+        assertEquals(p1, actual);
+    }
+
+    @Test
+    void findByTrackingNumber() {
+        Package actual = packageDAO.findByTrackingNumber(p1.getTrackingNumber());
+        assertEquals(p1, actual);
+    }
+
+    @Test
+    void findByDeliveryStatus() {
+        Package actual = packageDAO.findByDeliveryStatus(DeliveryStatus.PENDING.toString());
+        assertEquals(p1, actual);
+    }
+
+    @Test
+    void findAll() {
+    }
+
+    @Test
+    void findBySender() {
+    }
+
+    @Test
+    void findByReceiver() {
+    }
+
+    @Test
+    void findByCreatedDateTime() {
     }
 }
